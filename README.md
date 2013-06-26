@@ -16,7 +16,7 @@ It is strongly recommended to also install and use the following tools:
 3. [Vagrant](http://vagrantup.com)
 3. [Berkshelf](http://berkshelf.com)
 
-### Setup
+### Local Setup
 
 The following assumes you have all of the recommended tools listed above installed.
 
