@@ -1,0 +1,22 @@
+# Common Files
+.DS_Store
+.project
+.pydevproject
+.settings
+.coverage
+.vagrant*
+*.pyc
+rcfile.*
+!*.example
+*#*
+*~*
+nosetests.xml
+build/
+docs/_build
+*.backup*
+
+# Project Files
+Gemfile*
+Berksfile.lock
+.webassets-cache
+
