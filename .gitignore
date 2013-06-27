@@ -19,4 +19,5 @@ docs/_build
 Gemfile*
 Berksfile.lock
 .webassets-cache
-
+instance
+settings.cfg
