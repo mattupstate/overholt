@@ -6,10 +6,10 @@
     api user tests module
 """
 
-from . import OverholtDashboardTestCase
+from . import OverholtFrontendTestCase
 
 
-class DashboardTestCase(OverholtDashboardTestCase):
+class DashboardTestCase(OverholtFrontendTestCase):
 
     def test_authenticated_dashboard_access(self):
         r = self.get('/')
