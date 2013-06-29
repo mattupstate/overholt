@@ -9,7 +9,8 @@
 from flask import Blueprint, request
 
 from ..forms import NewStoreForm, UpdateStoreForm
-from ..services import stores as _stores, products as _products
+from ..services import stores as _stores, products as _products, users as _users
+from ..tasks import send_manager_added_email, send_manager_removed_email
 from . import OverholtFormError, route
 
 bp = Blueprint('stores', __name__, url_prefix='/stores')
@@ -70,4 +71,25 @@ def remove_product(store_id, product_id):
     """Removes a product form a store. Returns a 204 response."""
     _stores.remove_product(_stores.get_or_404(store_id),
                            _products.get_or_404(product_id))
+    return None, 204
+
+
+@route(bp, '/<store_id>/managers')
+def managers(store_id):
+    return _stores.get_or_404(store_id).managers
+
+
+@route(bp, '/<store_id>/managers/<user_id>', methods=['PUT'])
+def add_manager(store_id, user_id):
+    store, manager = _stores.add_manager(_stores.get_or_404(store_id),
+                                         _users.get_or_404(user_id))
+    send_manager_added_email.delay(manager.email)
+    return store
+
+
+@route(bp, '/<store_id>/managers/<user_id>', methods=['DELETE'])
+def remove_manager(store_id, user_id):
+    store, manager = _stores.remove_manager(_stores.get_or_404(store_id),
+                                            _users.get_or_404(user_id))
+    send_manager_removed_email.delay(manager.email)
     return None, 204

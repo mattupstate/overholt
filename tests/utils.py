@@ -38,14 +38,16 @@ class FlaskTestCaseMixin(object):
         self.csrf_token = '%s##%s' % (expires, csrf_hmac.hexdigest())
 
     def _html_data(self, kwargs):
-        kwargs['data']['csrf_token'] = self.csrf_token
+        if 'data' in kwargs:
+            kwargs['data']['csrf_token'] = self.csrf_token
         if not kwargs.get('content_type'):
             kwargs['content_type'] = 'application/x-www-form-urlencoded'
         return kwargs
 
     def _json_data(self, kwargs, csrf_enabled=True):
-        kwargs['data']['csrf_token'] = self.csrf_token
-        kwargs['data'] = json.dumps(kwargs['data'])
+        if 'data' in kwargs:
+            kwargs['data']['csrf_token'] = self.csrf_token
+            kwargs['data'] = json.dumps(kwargs['data'])
         if not kwargs.get('content_type'):
             kwargs['content_type'] = 'application/json'
         return kwargs

@@ -10,6 +10,7 @@ DEBUG = True
 SECRET_KEY = 'super-secret-key'
 
 SQLALCHEMY_DATABASE_URI = 'mysql://root@33.33.33.10:3306/overholt'
+CELERY_BROKER_URL = 'redis://33.33.33.10:6379/0'
 
 MAIL_DEFAULT_SENDER = 'info@overholt.com'
 MAIL_SERVER = 'smtp.postmarkapp.com'

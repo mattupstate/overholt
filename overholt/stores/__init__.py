@@ -14,16 +14,16 @@ class StoresService(Service):
     __model__ = Store
 
     def add_manager(self, store, user):
-        if store in user.stores:
+        if user in store.managers:
             raise OverholtError(u'Manager exists')
-        store.managers.add(user)
-        return self.save(store)
+        store.managers.append(user)
+        return self.save(store), user
 
     def remove_manager(self, store, user):
-        if store not in user.stores:
+        if user not in store.managers:
             raise OverholtError(u'Invalid manager')
         store.managers.remove(user)
-        return self.save(store)
+        return self.save(store), user
 
     def add_product(self, store, product):
         if product in store.products:

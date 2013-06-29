@@ -61,10 +61,21 @@ class StoreApiTestCase(OverholtApiTestCase):
     def test_add_product(self):
         p = ProductFactory()
         e = '/stores/%s/products/%s' % (self.store.id, p.id)
-        r = self.jput(e, data={})
+        r = self.jput(e)
         self.assertOkJson(r)
 
     def test_remove_product(self):
         e = '/stores/%s/products/%s' % (self.store.id, self.product.id)
+        r = self.jdelete(e)
+        self.assertStatusCode(r, 204)
+
+    def test_add_manager(self):
+        e = '/stores/%s/managers/%s' % (self.store.id, self.user.id)
+        r = self.jput(e)
+        self.assertOkJson(r)
+
+    def test_remove_manager(self):
+        e = '/stores/%s/managers/%s' % (self.store.id, self.user.id)
+        self.jput(e)
         r = self.jdelete(e)
         self.assertStatusCode(r, 204)
