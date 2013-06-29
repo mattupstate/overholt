@@ -7,7 +7,8 @@ Overholt is an example Flask application illustrating some of my common practice
 At the bare minimum you'll need the following for your development environment:
 
 1. [Python](http://www.python.org/)
-1. [MySQL](http://www.mysql.com/)
+2. [MySQL](http://www.mysql.com/)
+3. [Redis](http://redis.io/)
 
 It is strongly recommended to also install and use the following tools:
 
@@ -46,7 +47,11 @@ The following assumes you have all of the recommended tools listed above install
 
     $ python wsgi.py
 
-#### 7. Open [http://localhost:5000](http://localhost:5000)
+#### 7. In another console run the Celery app:
+
+    $ celery -A overholt.tasks worker
+
+#### 8. Open [http://localhost:5000](http://localhost:5000)
 
 
 ### Development
