@@ -92,7 +92,9 @@ Vagrant.configure("2") do |config|
     chef.run_list = [
       "recipe[apt]",
       "recipe[build-essential]",
-      "recipe[mysql::server]"
+      "recipe[mysql::server]",
+      "recipe[redisio::install]",
+      "recipe[redisio::enable]"
     ]
   end
 
