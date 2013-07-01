@@ -43,7 +43,7 @@ class DeleteUserCommand(Command):
         if not user:
             print 'Invalid user'
             return
-        users.delete(users)
+        users.delete(user)
         print 'User deleted successfully'
 
 
