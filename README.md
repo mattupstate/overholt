@@ -35,23 +35,27 @@ The following assumes you have all of the recommended tools listed above install
 
     $ berks install
 
-#### 4. Start virtual machine:
+#### 4. Install the Berkshelf plugin for Vagrant:
+
+    $ vagrant plugin install vagrant-berkshelf
+
+#### 5. Start virtual machine:
 
     $ vagrant up
 
-#### 5. Upgrade the database:
+#### 6. Upgrade the database:
 
     $ alembic upgrade head
 
-#### 6. Run the development server:
+#### 7. Run the development server:
 
     $ python wsgi.py
 
-#### 7. In another console run the Celery app:
+#### 8. In another console run the Celery app:
 
     $ celery -A overholt.tasks worker
 
-#### 8. Open [http://localhost:5000](http://localhost:5000)
+#### 9. Open [http://localhost:5000](http://localhost:5000)
 
 
 ### Development
@@ -91,4 +95,3 @@ These can sometimes be useful to manipulate data while debugging in the browser.
 To run the tests use the following command:
 
     $ nosetests
-
