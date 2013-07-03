@@ -22,13 +22,15 @@ security = Security()
 
 class OverholtError(Exception):
     """Base application error class."""
-    pass
+
+    def __init__(self, msg):
+        self.msg = msg
 
 
 class OverholtFormError(Exception):
     """Raise when an error processing a form occurs."""
 
-    def __init__(self, errors):
+    def __init__(self, errors=None):
         self.errors = errors
 
 

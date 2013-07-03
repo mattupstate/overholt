@@ -74,6 +74,12 @@ class StoreApiTestCase(OverholtApiTestCase):
         r = self.jput(e)
         self.assertOkJson(r)
 
+    def test_add_existing_manager(self):
+        e = '/stores/%s/managers/%s' % (self.store.id, self.user.id)
+        self.jput(e)
+        r = self.jput(e)
+        self.assertBadJson(r)
+
     def test_remove_manager(self):
         e = '/stores/%s/managers/%s' % (self.store.id, self.user.id)
         self.jput(e)
