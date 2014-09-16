@@ -23,7 +23,6 @@ billiard==2.7.3.30
 blinker==1.2
 celery==3.0.20
 cssmin==0.1.4
-distribute==0.6.34
 docutils==0.10
 factory-boy==1.3.0
 itsdangerous==0.21
