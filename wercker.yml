@@ -1,0 +1,6 @@
+box: wercker-labs/docker
+build:
+  steps:
+    - script:
+        name: Build the image
+        code: docker build -t mattupstate/overholt:$WERCKER_GIT_COMMIT .
