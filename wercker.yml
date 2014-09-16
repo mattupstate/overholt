@@ -1,6 +1,15 @@
 box: wercker-labs/docker
+
 build:
   steps:
     - script:
         name: Build the image
         code: docker build -t mattupstate/overholt:$WERCKER_GIT_COMMIT .
+
+  after-steps:
+    - script:
+        name: Login to the Docker hub
+        code: docker login -e $DOCKER_HUB_EMAIL -p $DOCKER_HUB_PASSWORD
+    - script:
+        name: Push the image up to the Docker hub
+        code: docker push mattupstate/overholt:$WERCKER_GIT_COMMIT
